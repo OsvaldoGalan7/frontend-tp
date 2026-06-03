@@ -1,122 +1,111 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+import Inicio from './pages/Inicio/Inicio';
+import Productos from './pages/Productos/Productos';
+import DetalleProducto from './pages/DetalleProducto/DetalleProducto';
+import Carrito from './pages/Carrito/Carrito';
+import Contacto from './pages/Contacto/Contacto';
+
+import NavigationBar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [carrito, setCarrito] = useState([]);
+  const [mensaje, setMensaje] = useState('');
+
+  function agregarAlCarrito(producto) {
+    const productoEnCarrito = carrito.find((item) => item.id === producto.id);
+
+    if (productoEnCarrito) {
+      setCarrito(
+        carrito.map((item) =>
+          item.id === producto.id
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item
+        )
+      );
+    } else {
+      setCarrito([...carrito, { ...producto, cantidad: 1 }]);
+    }
+    setMensaje('Producto agregado correctamente');
+
+    setTimeout(() => {
+    setMensaje('');
+    },  1500);
+  }
+
+  function aumentarCantidad(id) {
+    setCarrito(
+      carrito.map((item) =>
+        item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item
+      )
+    );
+  }
+
+  function disminuirCantidad(id) {
+    setCarrito(
+      carrito.map((item) =>
+        item.id === id && item.cantidad > 1
+          ? { ...item, cantidad: item.cantidad - 1 }
+          : item
+      )
+    );
+  }
+
+  function eliminarDelCarrito(id) {
+    setCarrito(carrito.filter((item) => item.id !== id));
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+    <div className="d-flex flex-column min-vh-100">
+      <NavigationBar />
+
+      {mensaje && (
+        <div
+          className="position-fixed top-0 start-50 translate-middle-x p-3"
+          style={{ zIndex: 1050 }}
         >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          <div className="alert alert-success mb-0" role="alert">
+            {mensaje}
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+)}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+
+      <main className="flex-grow-1">
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+
+          <Route
+            path="/productos"
+            element={<Productos agregarAlCarrito={agregarAlCarrito} />}
+          />
+
+          <Route
+            path="/producto/:id"
+            element={<DetalleProducto agregarAlCarrito={agregarAlCarrito} />}
+          />
+
+          <Route
+            path="/carrito"
+            element={
+              <Carrito
+                carrito={carrito}
+                aumentarCantidad={aumentarCantidad}
+                disminuirCantidad={disminuirCantidad}
+                eliminarDelCarrito={eliminarDelCarrito}
+              />
+            }
+          />
+
+          <Route path="/contacto" element={<Contacto />} />
+        </Routes>
+      </main>
+
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
