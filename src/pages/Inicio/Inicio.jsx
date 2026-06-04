@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
+import Carrusel from '../../components/Carrusel/Carrusel';
 
 function Inicio() {
   return (
     <Container className="mt-4">
-      <Row className="align-items-center">
+      <Carrusel/>
+      
+      <Row className="align-items-center mt-5">
         <Col md={6}>
           <h1>ElectroHogar</h1>
 
@@ -20,7 +23,7 @@ function Inicio() {
 
         <Col md={6}>
           <Image
-            src="https://via.placeholder.com/600x350"
+            src="https://www.endesa.com/content/dam/endesa-com/endesaclientes/blog/imagenes/AM_electrodomesticos_mas_usados_por_estaciones.jpg"
             alt="Electrodomésticos para el hogar"
             fluid
             rounded

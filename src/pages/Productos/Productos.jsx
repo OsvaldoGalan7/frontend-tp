@@ -8,7 +8,7 @@ function Productos({ agregarAlCarrito }) {
     <Container className="mt-4">
       <h1>Productos</h1>
 
-      <Row>
+      <Row className='elementos'>
         {productos.map((producto) => (
           <Col key={producto.id} md={4} className="mb-4">
             <ProductoCard

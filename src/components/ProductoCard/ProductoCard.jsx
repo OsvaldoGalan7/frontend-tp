@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, Button, Badge } from 'react-bootstrap';
+import styles from './ProductoCard.module.css';
 
 function ProductoCard({ producto, agregarAlCarrito }) {
   return (
@@ -9,6 +10,7 @@ function ProductoCard({ producto, agregarAlCarrito }) {
           variant="top"
           src={producto.imagen}
           alt={producto.nombre}
+          className={styles.productoImagen}
         />
       ) : (
         <div className="bg-light text-center p-5">
