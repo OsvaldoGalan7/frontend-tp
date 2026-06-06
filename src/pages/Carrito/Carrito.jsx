@@ -1,7 +1,6 @@
-import { Container, Table, Button } from 'react-bootstrap';
-
-import CarritoItem from '../../components/CarritoItem/CarritoItem';
-
+import { Container, Table, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import CarritoItem from "../../components/CarritoItem/CarritoItem";
 function Carrito({
   carrito,
   aumentarCantidad,
@@ -54,9 +53,10 @@ function Carrito({
 
           <h3>Total: ${total}</h3>
 
-          <Button variant="success">
+          <Button variant="success" onClick={() => navigate("/compra")}>
             Confirmar compra
           </Button>
+
         </>
       )}
     </Container>

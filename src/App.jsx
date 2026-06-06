@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Inicio from './pages/Inicio/Inicio';
-import Productos from './pages/Productos/Productos';
-import DetalleProducto from './pages/DetalleProducto/DetalleProducto';
-import Carrito from './pages/Carrito/Carrito';
-import Contacto from './pages/Contacto/Contacto';
+import Inicio from "./pages/Inicio/Inicio";
+import Productos from "./pages/Productos/Productos";
+import DetalleProducto from "./pages/DetalleProducto/DetalleProducto";
+import Carrito from "./pages/Carrito/Carrito";
+import Contacto from "./pages/Contacto/Contacto";
+import Compra from "./pages/Compra/Compra";
 
-import NavigationBar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
+import NavigationBar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [carrito, setCarrito] = useState([]);
@@ -58,6 +59,7 @@ function App() {
   }
 
   return (
+    // <Router>
     <div className="d-flex flex-column min-vh-100">
       <NavigationBar />
 
@@ -71,7 +73,6 @@ function App() {
           </div>
         </div>
 )}
-
 
       <main className="flex-grow-1">
         <Routes>
@@ -100,11 +101,13 @@ function App() {
           />
 
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/compra" element={<Compra />} />
         </Routes>
       </main>
 
       <Footer />
     </div>
+ // </Router>
   );
 }
 

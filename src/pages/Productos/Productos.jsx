@@ -18,6 +18,7 @@ function Productos({ agregarAlCarrito }) {
       : true;
     return coincideNombre && coincideCategoria;
   });
+  
 
   return (
     <Container className="mt-4">
