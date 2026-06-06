@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Container, Form, Button, Alert, Row, Col } from "react-bootstrap";
+import styles from "./Contacto.module.css";
+
 
 function Contacto() {
   const [datos, setDatos] = useState({
