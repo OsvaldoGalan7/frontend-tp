@@ -4,10 +4,10 @@ import { Container, Form, Button, Alert, Row, Col } from "react-bootstrap";
 function Contacto() {
   const [datos, setDatos] = useState({
     nombre: "",
-    email: "",
+    email: "nombre@ejemplo.com",
     telefono: "",
     localidad: "",
-    entrega: "",
+    entrega: "Retiro en el local",
     mensaje: "",
   });
 
@@ -41,9 +41,16 @@ function Contacto() {
     setEnviado(true);
   };
 
-  return (
-    <Container className="mt-4">
-      <h1>Contacto</h1>
+ return (
+    <Container className={`mt-4 ${styles.container}`}>
+      <Row>
+        <Col md={12}>
+          <h1 className={styles.titulo}>Contacto</h1>
+          <p className="text-muted mb-4">
+            Completá el formulario y nos pondremos en contacto.
+          </p>
+        </Col>
+      </Row>
 
       {error && <Alert variant="danger">{error}</Alert>}
       {enviado && (
@@ -133,7 +140,7 @@ function Contacto() {
           />
         </Form.Group>
 
-        <Button type="submit" variant="primary">
+        <Button type="submit" className={styles.boton}>
           Enviar
         </Button>
       </Form>
