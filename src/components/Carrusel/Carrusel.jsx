@@ -1,16 +1,25 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Carrusel.module.css";
 import teleAd from "../../assets/teleAd.jpg";
+import hogarAd1 from "../../assets/hogarAd1.jpg";
+import tecnologia from "../../assets/electroAd.jpg";
 
 function Carrusel() {
   const [indice, setIndice] = useState(0);
+  const navigate = useNavigate();
 
   const imagenes = [
-    teleAd,
-    teleAd,
-    teleAd,
-    teleAd
+    { src: teleAd, categoria: "Electrodomésticos" },
+    { src: hogarAd1, categoria: "Hogar" },
+    { src: tecnologia, categoria: "Tecnología" },
   ];
+
+  const irACategoria = (categoria) => {
+    if (categoria) {
+      navigate(`/productos?categoria=${categoria}`);
+    }
+  };
   const anterior = () => {
     setIndice((indice - 1 + imagenes.length) % imagenes.length);
   };
@@ -32,12 +41,13 @@ function Carrusel() {
                 transform: `translateX(-${indice * 100}%)`
                 }}
             >
-                {imagenes.map((imagen, index) => (
+                {imagenes.map((item, index) => (
                 <img
                     key={index}
-                    src={imagen}
+                    src={item.src}
                     alt={`Imagen ${index + 1}`}
-                    ref={}
+                    onClick={() => irACategoria(item.categoria)}
+                    style={item.categoria ? { cursor: "pointer" } : {}}
                 />
                 ))}
             </div>

@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Badge } from 'react-bootstrap';
 
 import productos from '../../data/productos';
 
-function DetalleProducto() {
+function DetalleProducto({ agregarAlCarrito }) {
   const { id } = useParams();
 
   const producto = productos.find((producto) => producto.id === Number(id));
@@ -69,9 +69,10 @@ function DetalleProducto() {
             ))}
           </ul>
 
-          <Button 
-          variant="success" disabled={producto.stock === 0}
-          onClick={() => agregarAlCarrito(producto)}
+          <Button
+            variant="success"
+            disabled={producto.stock === 0}
+            onClick={() => agregarAlCarrito(producto)}
           >
             Agregar al carrito
           </Button>
