@@ -37,6 +37,7 @@ function Carrusel() {
                     key={index}
                     src={imagen}
                     alt={`Imagen ${index + 1}`}
+                    ref={}
                 />
                 ))}
             </div>

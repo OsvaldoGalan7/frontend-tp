@@ -69,7 +69,10 @@ function DetalleProducto() {
             ))}
           </ul>
 
-          <Button variant="success" disabled={producto.stock === 0}>
+          <Button 
+          variant="success" disabled={producto.stock === 0}
+          onClick={() => agregarAlCarrito(producto)}
+          >
             Agregar al carrito
           </Button>
         </Col>
