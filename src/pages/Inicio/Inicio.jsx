@@ -2,6 +2,21 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 import Carrusel from '../../components/Carrusel/Carrusel';
 
+
+import productos from "../../data/productos";
+import ProductoCardCompacto from "../../components/ProductoCard/ProductoCardCompacto";
+
+function obtenerProductoMasCaro(categoria) {
+  return productos
+    .filter(producto => producto.categoria === categoria)
+    .reduce((masCaro, producto) =>
+      producto.precio > masCaro.precio ? producto : masCaro
+    , { precio: 0 });
+}
+const productoHogarMasCaro = obtenerProductoMasCaro("Hogar");
+const productoElectrodomesticoMasCaro = obtenerProductoMasCaro("Electrodomésticos");
+const productoTecnologicoMasCaro = obtenerProductoMasCaro("Tecnología");
+
 function Inicio() {
   return (
     <Container className="mt-4">
@@ -29,6 +44,29 @@ function Inicio() {
             rounded
           />
         </Col>
+        
+        <h2>Nuestros productos mas vendidos!</h2>
+
+        <Col className = "articulo" md={4}>
+          <ProductoCardCompacto
+              producto={productoHogarMasCaro}
+              
+          />
+        </Col>
+        <Col className = "articulo" md={4}>
+          <ProductoCardCompacto
+              producto={productoElectrodomesticoMasCaro}
+            
+          />
+        </Col>
+        <Col className = "articulo" md={4}>
+          <ProductoCardCompacto
+              producto={productoTecnologicoMasCaro}
+              
+          />
+        </Col>
+        
+        
       </Row>
     </Container>
   );
