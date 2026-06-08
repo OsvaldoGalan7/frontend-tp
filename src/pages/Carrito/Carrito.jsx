@@ -7,6 +7,8 @@ function Carrito({
   disminuirCantidad,
   eliminarDelCarrito,
 }) {
+  const navigate = useNavigate();
+
   const total = carrito.reduce(
     (acumulador, item) => acumulador + item.precio * item.cantidad,
     0
