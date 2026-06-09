@@ -1,8 +1,9 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import styles from './Footer.module.css';
 
 function Footer() {
   return (
-    <footer className="bg-dark text-white mt-4 py-4">
+    <footer id={styles.footer}>
       <Container>
         <Row>
           <Col md={4}>

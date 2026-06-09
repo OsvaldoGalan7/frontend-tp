@@ -1,0 +1,28 @@
+.Navbar{
+    background-color: #ba181b !important;
+    font-size: 20px;
+}
+.navMenu{
+    margin-left: auto;
+    background-color: #eaf4f4;
+    color: #a4161a !important;
+    border: none;
+    padding: 1px 2px;
+    border-radius: 6px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.navMenu:hover{
+    
+    transform: scale(1.15);
+}
+#logo{
+    font-size: 25px;
+    color: aliceblue !important;
+    transition: all 0.3s ease;
+}
+    
+#logo:hover{
+    transform: scale(1.15);
+}

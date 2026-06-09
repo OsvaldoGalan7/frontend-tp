@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import styles from './Navbar.module.css';
 
 function NavigationBar() {
   return (
-    <Navbar bg="dark" data-bs-theme="dark" expand="lg">
+    <Navbar className={styles.Navbar} expand="lg">
       <Container>
-        <Navbar.Brand as={NavLink} to="/">
+        <Navbar.Brand id ={styles.logo} as={NavLink} to="/">
           ElectroHogar
         </Navbar.Brand>
 
@@ -13,19 +14,19 @@ function NavigationBar() {
 
         <Navbar.Collapse id="navbar-principal">
           <Nav className="ms-auto">
-            <Nav.Link as={NavLink} to="/">
+            <Nav.Link className={styles.navMenu} as={NavLink} to="/">
               Inicio
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/productos">
+            <Nav.Link className={styles.navMenu} as={NavLink} to="/productos">
               Productos
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/carrito">
+            <Nav.Link className={styles.navMenu} as={NavLink} to="/carrito">
               Carrito
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/contacto">
+            <Nav.Link className={styles.navMenu} as={NavLink} to="/contacto">
               Contacto
             </Nav.Link>
           </Nav>
